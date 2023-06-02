@@ -56,7 +56,7 @@ class GoogleMapLocationPicker extends StatelessWidget {
     this.zoomGesturesEnabled = true,
     this.zoomControlsEnabled = false,
     this.fullMotion = false,
-    required this.initialCameraPosition,
+    required this.initZoomLevel,
   }) : super(key: key);
 
   final LatLng initialTarget;
@@ -83,7 +83,7 @@ class GoogleMapLocationPicker extends StatelessWidget {
 
   final String? language;
   final CircleArea? pickArea;
-  final CameraPosition initialCameraPosition;
+  final double initZoomLevel;
 
   final bool? forceSearchOnZoomChanged;
   final bool? hidePlaceDetailsWhenDraggingPin;
@@ -190,12 +190,12 @@ class GoogleMapLocationPicker extends StatelessWidget {
   }
 
   Widget _buildGoogleMapInner(PlaceProvider? provider, MapType mapType) {
-    // CameraPosition initialCameraPosition =
-    //     CameraPosition(target: this.initialTarget, zoom: 15);
+    CameraPosition initialCameraPosition =
+        CameraPosition(target: this.initialTarget, zoom: initZoomLevel);
     return GoogleMap(
       zoomGesturesEnabled: this.zoomGesturesEnabled,
-      zoomControlsEnabled:
-          false, // we use our own implementation that supports iOS as well, see _buildZoomButtons()
+      // we use our own implementation that supports iOS as well, see _buildZoomButtons()
+      zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       compassEnabled: false,
       mapToolbarEnabled: false,

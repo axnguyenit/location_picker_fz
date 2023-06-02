@@ -62,7 +62,7 @@ class LocationPicker extends StatefulWidget {
     this.onMapTypeChanged,
     this.zoomGesturesEnabled = true,
     this.zoomControlsEnabled = false,
-    required this.initialCameraPosition,
+    required this.initZoomLevel,
   }) : super(key: key);
 
   final String apiKey;
@@ -89,7 +89,7 @@ class LocationPicker extends StatefulWidget {
 
   final bool? strictbounds;
   final String? region;
-  final CameraPosition initialCameraPosition;
+  final double initZoomLevel;
 
   /// If set the picker can only pick addresses in the given circle area.
   /// The section will be highlighted.
@@ -369,7 +369,7 @@ class _LocationPickerState extends State<LocationPicker> {
       onCameraIdle: widget.onCameraIdle,
       zoomGesturesEnabled: widget.zoomGesturesEnabled,
       zoomControlsEnabled: widget.zoomControlsEnabled,
-      initialCameraPosition: widget.initialCameraPosition,
+      initZoomLevel: widget.initZoomLevel,
     );
   }
 
